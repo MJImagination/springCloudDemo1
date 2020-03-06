@@ -63,4 +63,29 @@ public class OrderService {
         return order;
     }
 
+    /**
+     * 根据订单id查询订单数据
+     *
+     * @param orderId
+     * @return
+     */
+    public Order queryOrderById3(String orderId) {
+        Order order = ORDER_DATA.get(orderId);
+        if (null == order) {
+            return null;
+        }
+        List<OrderDetail> orderDetails = order.getOrderDetails();
+        for (OrderDetail orderDetail : orderDetails) {
+            // 通过商品微服务查询商品详细数据
+            Item item = this.itemService.queryItemById3(orderDetail.getItem()
+                    .getId());
+            if (null == item) {
+                continue;
+            }
+            orderDetail.setItem(item);
+        }
+
+        return order;
+    }
+
 }
