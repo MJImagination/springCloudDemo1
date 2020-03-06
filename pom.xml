@@ -16,6 +16,7 @@
         <module>microservice-order</module>
         <module>eureka-server</module>
         <module>microservice-item-2</module>
+        <module>microserver-api-gatway</module>
     </modules>
 
 
